@@ -1,0 +1,29 @@
+<%= form_for(@conn) do |f| %>
+  <% if @conn.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@conn.errors.count, "error") %> prohibited this conn from being saved:</h2>
+
+      <ul>
+      <% @conn.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :access_key %><br />
+    <%= f.text_field :access_key %>
+  </div>
+  <div class="field">
+    <%= f.label :secret_access_key %><br />
+    <%= f.text_field :secret_access_key %>
+  </div>
+  <div class="field">
+    <%= f.label :end_point %><br />
+    <%= f.text_field :end_point %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

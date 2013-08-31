@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Access key:</b>
+  <%= @conn.access_key %>
+</p>
+
+<p>
+  <b>Secret access key:</b>
+  <%= @conn.secret_access_key %>
+</p>
+
+<p>
+  <b>End point:</b>
+  <%= @conn.end_point %>
+</p>
+
+
+<%= link_to 'Edit', edit_conn_path(@conn) %> |
+<%= link_to 'Back', conns_path %>

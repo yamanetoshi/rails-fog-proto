@@ -1,0 +1,27 @@
+<h1>Listing conns</h1>
+
+<table>
+  <tr>
+    <th>Access key</th>
+    <th>Secret access key</th>
+    <th>End point</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @conns.each do |conn| %>
+  <tr>
+    <td><%= conn.access_key %></td>
+    <td><%= conn.secret_access_key %></td>
+    <td><%= conn.end_point %></td>
+    <td><%= link_to 'Show', conn %></td>
+    <td><%= link_to 'Edit', edit_conn_path(conn) %></td>
+    <td><%= link_to 'Destroy', conn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Conn', new_conn_path %>
