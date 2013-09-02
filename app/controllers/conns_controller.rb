@@ -1,4 +1,5 @@
 class ConnsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /conns
   # GET /conns.json
   def index
