@@ -65,5 +65,5 @@ Shurijp::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => 'secret-beyond-8774.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://guarded-basin-4478.herokuapp.com/' }
 end
