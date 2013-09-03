@@ -1,7 +1,9 @@
 Shurijp::Application.routes.draw do
-  devise_for :users
-
   root :to => "conns#index"
+
+  devise_for :users
+  get 'conns', :to => 'conns#index', :as => :user_root
+
   resources :conns
 
 
