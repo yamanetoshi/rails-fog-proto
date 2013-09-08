@@ -10,6 +10,8 @@ gem 'twitter-bootstrap-rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
+  gem 'factory_girl_rails', '4.1.0'
+  gem 'rspec'
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
 end

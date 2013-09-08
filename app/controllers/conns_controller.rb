@@ -3,7 +3,8 @@ class ConnsController < ApplicationController
   # GET /conns
   # GET /conns.json
   def index
-    @conns = Conn.all
+#    @conns = Conn.all
+    @conns = current_user.conns
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,8 @@ class ConnsController < ApplicationController
   # GET /conns/1
   # GET /conns/1.json
   def show
-    @conn = Conn.find(params[:id])
+#    @conn = Conn.find(params[:id])
+    @conn = current_user.conns.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +27,8 @@ class ConnsController < ApplicationController
   # GET /conns/new
   # GET /conns/new.json
   def new
-    @conn = Conn.new
+#    @conn = Conn.new
+    @conn = current_user.conns.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +38,15 @@ class ConnsController < ApplicationController
 
   # GET /conns/1/edit
   def edit
-    @conn = Conn.find(params[:id])
+#    @conn = Conn.find(params[:id])
+    @conn = current_user.conns.find(params[:id])
   end
 
   # POST /conns
   # POST /conns.json
   def create
-    @conn = Conn.new(params[:conn])
+#    @conn = Conn.new(params[:conn])
+    @conn = current_user.conns.build(params[:conn])
 
     respond_to do |format|
       if @conn.save
@@ -57,7 +62,8 @@ class ConnsController < ApplicationController
   # PUT /conns/1
   # PUT /conns/1.json
   def update
-    @conn = Conn.find(params[:id])
+#    @conn = Conn.find(params[:id])
+    @conn = current_user.conns.find(params[:id])
 
     respond_to do |format|
       if @conn.update_attributes(params[:conn])
@@ -73,7 +79,8 @@ class ConnsController < ApplicationController
   # DELETE /conns/1
   # DELETE /conns/1.json
   def destroy
-    @conn = Conn.find(params[:id])
+#    @conn = Conn.find(params[:id])
+    @conn = current_user.conns.find(params[:id])
     @conn.destroy
 
     respond_to do |format|
