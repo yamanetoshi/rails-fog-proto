@@ -18,3 +18,15 @@
 
 <%= link_to 'Edit', edit_conn_path(@conn) %> |
 <%= link_to 'Back', conns_path %>
+<p />
+<table>
+  <tr>
+    <th>hostname</th>
+  </tr>
+
+<% @array.each do |i| %>
+  <tr>
+    <td><%= i["name"] %></td>
+  </tr>
+<% end %>
+</table>

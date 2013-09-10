@@ -1,3 +1,6 @@
+require 'fog'
+require 'json'
+
 class ConnsController < ApplicationController
   before_filter :authenticate_user!
   # GET /conns
@@ -17,6 +20,30 @@ class ConnsController < ApplicationController
   def show
 #    @conn = Conn.find(params[:id])
     @conn = current_user.conns.find(params[:id])
+
+#    str = "@conns : " + @conn.end_point
+#    logger.debug str
+#    logger.debug "debug @conns : " + @conn.end_point
+
+cloudstack_uri = URI.parse(@conn.end_point)
+
+    @compute = Fog::Compute.new(
+:provider => 'CloudStack',
+:cloudstack_api_key => @conn.access_key,
+:cloudstack_secret_access_key => @conn.secret_access_key,
+:cloudstack_host => cloudstack_uri.host,
+:cloudstack_port => cloudstack_uri.port,
+:cloudstack_path => cloudstack_uri.path,
+:cloudstack_scheme => cloudstack_uri.scheme,
+)
+
+#    logger.debug @compute.list_virtual_machines
+
+    ret = JSON.parse(@compute.list_virtual_machines.to_json)
+#    logger.debug ret["listvirtualmachinesresponse"]["virtualmachine"].length
+#    logger.debug ret["listvirtualmachinesresponse"]["virtualmachine"][0]["name"]
+    @array = ret["listvirtualmachinesresponse"]["virtualmachine"]
+#    array.map{|i| logger.debug i["name"]}
 
     respond_to do |format|
       format.html # show.html.erb
