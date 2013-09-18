@@ -72,7 +72,6 @@ describe ConnsController do
     context "When user is signed in" do
       before do
         login_user
-        conn = FactoryGirl.create(:conn)
       end
 
       it "responds successfully with on HTTP 200 status code" do
@@ -103,7 +102,6 @@ describe ConnsController do
     context "When user is signed in" do
       before do
         login_user
-        conn = FactoryGirl.create(:conn)
       end
 
       it "responds successfully with on HTTP 200 status code" do
@@ -189,19 +187,19 @@ describe ConnsController do
 
       context "with valid params" do
         it "updates the requested conn" do
-          conn = FactoryGirl.create(:conn)
+          conn = subject.current_user.conns[0]
           Conn.any_instance.should_receive(:update_attributes).with({'access_key' => 'params'})
           put :update, {:id => conn.to_param, :conn => {:access_key => 'params'}}
         end
 
         it "assigns the requested conn as @conn" do
-          conn = FactoryGirl.create(:conn)
+          conn = subject.current_user.conns[0]
           put :update, {:id => conn.to_param, :conn => {}}
           expect(assigns(:conn)).to eq(conn)
         end
 
         it "redirects to the item" do
-          conn = FactoryGirl.create(:conn)
+          conn = subject.current_user.conns[0]
           put :update, {:id => conn.to_param, :conn => {}}
           expect(response).to redirect_to(conn)
         end
@@ -209,14 +207,14 @@ describe ConnsController do
 
       context "with invalid params" do
         it "assigns the conn as @conn" do
-          conn = FactoryGirl.create(:conn)
+          conn = subject.current_user.conns[0]
           Conn.any_instance.stub(:save).and_return(false)
           put :update, {:id => conn.to_param, :conn => {}}
           expect(assigns(:conn)).to eq(conn)
         end
 
         it "re-renders the 'edit' template" do
-          conn = FactoryGirl.create(:conn)
+          conn = subject.current_user.conns[0]
           Conn.any_instance.stub(:save).and_return(false)
           put :update, {:id => conn.to_param, :conn => {}}
           expect(response).to render_template("edit")
@@ -244,14 +242,14 @@ describe ConnsController do
       end
 
       it "destroys the requested item" do
-        conn = FactoryGirl.create(:conn)
+        conn = subject.current_user.conns[0]
         expect {
           delete :destroy, {:id => conn.to_param}
         }.to change(Conn, :count).by(-1)
       end
 
       it "redirects to the items list" do
-        conn = FactoryGirl.create(:conn)
+        conn = subject.current_user.conns[0]
         delete :destroy, {:id => conn.to_param}
         expect(response).to redirect_to(conns_url)
       end
