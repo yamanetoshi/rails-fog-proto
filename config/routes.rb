@@ -1,11 +1,18 @@
 Shurijp::Application.routes.draw do
+
   root :to => "conns#index"
 
   devise_for :users
   get 'conns', :to => 'conns#index', :as => :user_root
 
   resources :conns
+  resources :vm_operations, only: [ :new, :create ] do
+    member do
+      get :start, :stop
+    end
+  end
 
+  match 'vm_operations/:idx', :to => 'vm_operations#index', :as => 'vm_operations', :via => :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
