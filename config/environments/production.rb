@@ -67,5 +67,5 @@ Shurijp::Application.configure do
 
   config.assets.compile = true
 
-  config.action_mailer.default_url_options = { :host => 'obscure-atoll-8328.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'pacific-waters-3561.herokuapp.com' }
 end
