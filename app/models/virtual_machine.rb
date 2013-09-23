@@ -20,11 +20,27 @@ class VirtualMachine < ActiveRecord::Base
     compute = make_compute
 
     compute.deploy_virtual_machine({
-      'name' => hostname,
+      'displayname' => hostname,
       'serviceOfferingId' => '24',
       'templateId' => '4405',
       'zoneId' => '1',
                                    })
+  end
+
+  def self.start_vm(conn, id)
+    @conn = conn
+    @uri = URI.parse(conn.end_point)
+    compute = make_compute
+
+    compute.start_virtual_machine({'id' => id})
+  end
+
+  def self.stop_vm(conn, id)
+    @conn = conn
+    @uri = URI.parse(conn.end_point)
+    compute = make_compute
+
+    compute.stop_virtual_machine({'id' => id})
   end
 
   private

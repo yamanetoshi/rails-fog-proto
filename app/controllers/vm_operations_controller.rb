@@ -32,15 +32,17 @@ class VmOperationsController < ApplicationController
   end
 
   def start
+    VirtualMachine.start_vm(current_user.conns[session[:idx].to_i], params[:id])
     respond_to do |format|
-      format.html # start.html.erb
+      format.html { redirect_to :action => 'index', :idx => session[:idx] }
 #      format.json { render json: @conns }
     end
   end
 
   def stop
+    VirtualMachine.stop_vm(current_user.conns[session[:idx].to_i], params[:id])
     respond_to do |format|
-      format.html # stop.html.erb
+      format.html { redirect_to :action => 'index', :idx => session[:idx] }
 #      format.json { render json: @conns }
     end
   end
