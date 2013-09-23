@@ -2,19 +2,23 @@
 
 <table>
   <tr>
+    <th>Provider</th>
     <th>Access key</th>
     <th>Secret access key</th>
     <th>End point</th>
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
-<% @conns.each do |conn| %>
+<% @conns.each_with_index do |conn, i| %>
   <tr>
+    <td><%= conn.provider %></td>
     <td><%= conn.access_key %></td>
     <td><%= conn.secret_access_key %></td>
     <td><%= conn.end_point %></td>
+    <td><%= link_to 'VMs', {:controller => 'vm_operations', :action => 'index', :idx => i} %>
     <td><%= link_to 'Show', conn %></td>
     <td><%= link_to 'Edit', edit_conn_path(conn) %></td>
     <td><%= link_to 'Destroy', conn, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,0 +1,12 @@
+<h1>new VM</h1>
+
+<%= form_tag('/vm_operations') do %>
+
+  <%= label_tag 'Displayname' %>
+  <%= text_field_tag :hostname %>
+
+  <%= submit_tag 'deploy' %>
+
+<% end %>
+
+<%= link_to 'Back', :back %>
