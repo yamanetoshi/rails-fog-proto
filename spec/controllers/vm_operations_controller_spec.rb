@@ -44,9 +44,7 @@ describe VmOperationsController do
       fog_mock_init
 
       post 'create'
-#      response.should be_success
-        expect(response).to redirect_to(:action => 'index', :idx => '0')
-#      expect(response).to render_template("vm_operations/index")
+      expect(response).to redirect_to(:action => 'index', :idx => '0')
     end
   end
 
@@ -56,8 +54,10 @@ describe VmOperationsController do
     end
 
     it "returns http success" do
+      fog_mock_init
+
       get 'start', {:id => 1}
-      response.should be_success
+      expect(response).to redirect_to(:action => 'index', :idx => '0')
     end
   end
 
@@ -67,8 +67,10 @@ describe VmOperationsController do
     end
 
     it "returns http success" do
+      fog_mock_init
+
       get 'stop', {:id => 1}
-      response.should be_success
+      expect(response).to redirect_to(:action => 'index', :idx => '0')
     end
   end
 

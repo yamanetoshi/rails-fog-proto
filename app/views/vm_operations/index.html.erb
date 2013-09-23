@@ -3,16 +3,28 @@
 <table>
   <tr>
     <th>Hostname</th>
+    <th>VM state</th>
+    <th>start/stop</th>
   </tr>
 
 <% @virtual_machines[:vms]["listvirtualmachinesresponse"]["virtualmachine"].each do |vm| %>
   <tr>
     <td><%= vm["displayname"] %></td>
+    <td><%= vm["state"] %></td>
+    <td>
+      <% if vm["state"] == "Running" then %>
+      <%= link_to "Stop VM", controller:"vm_operations", action:"stop", id: vm["id"] %>
+      <% elsif vm["state"] == "Stopped" then %>
+      <%= link_to "Start VM", controller:"vm_operations", action:"start", id: vm["id"] %>
+      <% else %>
+
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New VM', vm_operations_path %>
+<%= link_to 'New VM', new_vm_operation_path %>
 

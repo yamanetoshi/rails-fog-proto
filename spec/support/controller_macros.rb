@@ -26,12 +26,14 @@ module ControllerMacros
     cloudstack = Fog::Compute.new(@mock_creds)
     Fog::Compute.stub(:new).and_return(cloudstack)
     cloudstack.stub(:deploy_virtual_machine).and_return(nil)
+    cloudstack.stub(:start_virtual_machine).and_return(nil)
+    cloudstack.stub(:stop_virtual_machine).and_return(nil)
     cloudstack
   end
 
   def fog_mock_init
     cloudstack = fog_mock_init_request
     session[:idx] = "0"
-    cloudstack.stub(:list_virtual_machines).and_return({"listvirtualmachinesresponse" => {"virtualmachine" => []}})
+    cloudstack.stub(:list_virtual_machines).and_return({"listvirtualmachinesresponse" => {"virtualmachine" => [{"id" => 1}]}})
   end
 end
