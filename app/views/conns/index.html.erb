@@ -14,10 +14,15 @@
   <tr>
     <td><%= conn.provider %></td>
     <td><%= conn.end_point %></td>
-    <td><%= link_to 'VMs', {:controller => 'vm_operations', :action => 'index', :idx => i} %>
-    <td><%= link_to 'Show', conn %></td>
-    <td><%= link_to 'Edit', edit_conn_path(conn) %></td>
-    <td><%= link_to 'Destroy', conn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operation<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+         <li><%= link_to 'VMs', {:controller => 'vm_operations', :action => 'index', :idx => i} %></li>
+         <li><%= link_to 'Show', conn %></li>
+         <li><%= link_to 'Edit', edit_conn_path(conn) %></li>
+         <li><%= link_to 'Destroy', conn, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul>
+    </td>
   </tr>
 <% end %>
 </table>
