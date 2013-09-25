@@ -7,4 +7,5 @@ describe Conn do
   it { should respond_to(:end_point) }
   it { should respond_to(:secret_access_key) }
   it { should respond_to(:provider) }
+  it { should respond_to(:name) }
 end
