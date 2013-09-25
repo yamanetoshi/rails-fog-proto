@@ -2,8 +2,8 @@
 
 <table>
   <tr>
+    <th>Name</th>
     <th>Provider</th>
-    <th>End point</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,8 +12,8 @@
 
 <% @conns.each_with_index do |conn, i| %>
   <tr>
+    <td><%= conn.name %></td>
     <td><%= conn.provider %></td>
-    <td><%= conn.end_point %></td>
     <td class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operation<b class="caret"></b></a>
       <ul class="dropdown-menu">
