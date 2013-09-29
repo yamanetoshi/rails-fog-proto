@@ -1,5 +1,8 @@
 Shurijp::Application.routes.draw do
 
+  resources :providers
+
+
   root :to => "conns#index"
 
   devise_for :users

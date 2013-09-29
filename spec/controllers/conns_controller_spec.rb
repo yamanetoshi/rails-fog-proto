@@ -34,7 +34,7 @@ describe ConnsController do
   describe "Get #new" do
     context "When user is not signed in" do
       it "should redirect to signin screen" do
-        get :index
+        get :new
         expect(response).to redirect_to(new_user_session_path)
       end
     end
