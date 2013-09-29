@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :provider %><br />
-    <%= f.text_field :provider %>
+    <%= f.collection_select :provider_id, Provider.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :access_key %><br />
