@@ -6,7 +6,16 @@ end
 
 module RequestHelpers
   def create_logged_in_user
-    user = FactoryGirl.create :user
+    conn = FactoryGirl.create :conn
+    user = User.find(conn.user_id)
+    user.confirm!
+    user.save!
+    login(user)
+    user
+  end
+
+  def create_logged_in_admin_user
+    user = FactoryGirl.create :adminuser
     user.confirm!
     user.save!
     login(user)
