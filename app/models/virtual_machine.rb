@@ -45,7 +45,7 @@ class VirtualMachine < ActiveRecord::Base
 
   private
   def self.make_compute
-    compute = Fog::Compute.new(:provider => @conn.provider,
+    compute = Fog::Compute.new(:provider => @conn.provider.name,
                                :cloudstack_api_key => @conn.access_key,
                                :cloudstack_secret_access_key => @conn.secret_access_key,
                                :cloudstack_host => @uri.host,
