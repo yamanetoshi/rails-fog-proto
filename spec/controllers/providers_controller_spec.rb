@@ -45,6 +45,21 @@ describe ProvidersController do
       end
     end
 
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        get :index
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
+      end
+    end
+
     context "When user is signed in" do
       before do
         login_admin
@@ -79,6 +94,22 @@ describe ProvidersController do
         provider = Provider.create! valid_attributes
         get :show, {:id => provider.to_param}, valid_session
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        provider = Provider.create! valid_attributes
+        get :show, {:id => provider.to_param}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
       end
     end
 
@@ -120,6 +151,21 @@ describe ProvidersController do
       end
     end
 
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        get :new, {}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
+      end
+    end
+
     context "When user is signed in" do
       before do
         login_admin
@@ -153,6 +199,22 @@ describe ProvidersController do
         provider = Provider.create! valid_attributes
         get :edit, {:id => provider.to_param}, valid_session
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        provider = Provider.create! valid_attributes
+        get :edit, {:id => provider.to_param}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
       end
     end
 
@@ -191,6 +253,21 @@ describe ProvidersController do
       it "should redirect to signin screen" do
         post :create, {:provider => valid_attributes}, valid_session
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        post :create, {:provider => valid_attributes}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
       end
     end
 
@@ -243,6 +320,22 @@ describe ProvidersController do
         put :update, {:id => provider.to_param, :provider => {'these' => 'params'}}, valid_session
 
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        provider = Provider.create! valid_attributes
+        put :update, {:id => provider.to_param, :provider => {'these' => 'params'}}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
       end
     end
 
@@ -301,6 +394,22 @@ describe ProvidersController do
         provider = Provider.create! valid_attributes
         delete :destroy, {:id => provider.to_param}, valid_session
         expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in but not admin" do
+      before do
+        login_user
+      end
+
+      it "should redirect to root screen" do
+        provider = Provider.create! valid_attributes
+        delete :destroy, {:id => provider.to_param}, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+
+      after do
+        sign_out :user
       end
     end
 
