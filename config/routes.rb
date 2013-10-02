@@ -1,9 +1,15 @@
 Shurijp::Application.routes.draw do
 
+  get "user_property/index"
+
   resources :providers
 
 
   root :to => "conns#index"
+
+  namespace :api do
+    devise_for(:users, :controllers => { :sessions => "sessions" })
+  end
 
   devise_for :users
   get 'conns', :to => 'conns#index', :as => :user_root
