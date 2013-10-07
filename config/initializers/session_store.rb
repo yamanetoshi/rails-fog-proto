@@ -6,4 +6,4 @@
 # Shurijp::Application.config.session_store :active_record_store
 
 # Shurijp::Application.config.session_store :cookie_store, key: '_shurijp_session'
-Shurijp::Application.config.session_store :redis_store, :servers => { :host => "localhost", :port => 6379, :namespace => "sessions" }
+Shurijp::Application.config.session_store :redis_store, :servers => { :host => "redis://redistogo:c89a251c7eed45ddcc6bc4ae49f3143c@beardfish.redistogo.com", :port => 10446, :namespace => "sessions" }
