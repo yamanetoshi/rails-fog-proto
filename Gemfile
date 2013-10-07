@@ -7,6 +7,7 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem "fog", "1.8.0"
+gem "redis-rails"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
