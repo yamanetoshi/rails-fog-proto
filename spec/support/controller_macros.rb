@@ -17,6 +17,7 @@ module ControllerMacros
     user = User.find(conn.user_id)
     user.confirm!
     sign_in user
+    controller.stub!(:current_user).and_return(user)
   end
 
   def fog_mock_init_request
