@@ -5,6 +5,21 @@
   <%= @provider.name %>
 </p>
 
+<p>
+  <b>Create vm:</b>
+  <%= @provider.create_vm %>
+</p>
+
+<p>
+  <b>Start vm:</b>
+  <%= @provider.start_vm %>
+</p>
+
+<p>
+  <b>Stop vm:</b>
+  <%= @provider.stop_vm %>
+</p>
+
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
 <%= link_to 'Back', providers_path %>
