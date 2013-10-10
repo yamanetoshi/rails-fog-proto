@@ -11,5 +11,8 @@ describe "providers/show" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Name/)
+    rendered.should match(/Create vm/)
+    rendered.should match(/Start vm/)
+    rendered.should match(/Stop vm/)
   end
 end
