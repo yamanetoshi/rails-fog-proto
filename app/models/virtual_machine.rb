@@ -19,7 +19,7 @@ class VirtualMachine < ActiveRecord::Base
     @uri = URI.parse(conn.end_point)
     compute = make_compute
 
-    compute.deploy_virtual_machine({
+    compute.send(conn.provider.create_vm.to_sym, {
       'displayname' => hostname,
       'serviceOfferingId' => '24',
       'templateId' => '4405',
@@ -32,7 +32,7 @@ class VirtualMachine < ActiveRecord::Base
     @uri = URI.parse(conn.end_point)
     compute = make_compute
 
-    compute.start_virtual_machine({'id' => id})
+    compute.send(conn.provider.start_vm.to_sym, {'id' => id})
   end
 
   def self.stop_vm(conn, id)
@@ -40,7 +40,7 @@ class VirtualMachine < ActiveRecord::Base
     @uri = URI.parse(conn.end_point)
     compute = make_compute
 
-    compute.stop_virtual_machine({'id' => id})
+    compute.send(conn.provider.stop_vm.to_sym, {'id' => id})
   end
 
   private
