@@ -16,6 +16,7 @@ describe "providers/edit" do
       assert_select "input#provider_create_vm", :name => "provider[create_vm]"
       assert_select "input#provider_start_vm", :name => "provider[start_vm]"
       assert_select "input#provider_stop_vm", :name => "provider[stop_vm]"
+      assert_select "input#provider_reboot_vm", :name => "provider[reboot_vm]"
     end
   end
 end

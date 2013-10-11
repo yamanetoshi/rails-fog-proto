@@ -17,7 +17,7 @@ Shurijp::Application.routes.draw do
   resources :conns
   resources :vm_operations, only: [ :new, :create ] do
     member do
-      get :start, :stop
+      get :start, :stop, :reboot
     end
   end
 

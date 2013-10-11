@@ -135,4 +135,26 @@ describe VmOperationsController do
     end
   end
 
+  describe "GET 'reboot'" do
+    context "When user is not signed in" do
+      it "should redirect to signin screen" do
+        post :create
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in" do
+      before do
+        login_user
+      end
+
+      it "returns http success" do
+        fog_mock_init
+
+        get 'reboot', {:id => 1}
+        expect(response).to redirect_to(:action => 'index', :idx => '0')
+      end
+    end
+  end
+
 end
