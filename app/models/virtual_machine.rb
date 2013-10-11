@@ -43,6 +43,14 @@ class VirtualMachine < ActiveRecord::Base
     compute.send(conn.provider.stop_vm.to_sym, {'id' => id})
   end
 
+  def self.reboot_vm(conn, id)
+    @conn = conn
+    @uri = URI.parse(conn.end_point)
+    compute = make_compute
+
+    compute.send(conn.provider.reboot_vm.to_sym, {'id' => id})
+  end
+
   private
   def self.make_compute
     compute = Fog::Compute.new(:provider => @conn.provider.name,
