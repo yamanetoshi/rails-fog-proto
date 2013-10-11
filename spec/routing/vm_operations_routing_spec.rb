@@ -29,5 +29,11 @@ describe VmOperationsController do
                                                             :action => 'stop',
                                                             :id => '1')
     end
+
+    it "routes to #reboot" do
+      expect(:get => "/vm_operations/1/reboot").to route_to(:controller => "vm_operations",
+                                                            :action => 'reboot',
+                                                            :id => '1')
+    end
   end
 end

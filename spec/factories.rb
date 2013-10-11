@@ -18,6 +18,10 @@ FactoryGirl.define do
   factory :provider do
 #    id 1
     name "CloudStack"
+    create_vm "deploy_virtual_machine"
+    start_vm "start_virtual_machine"
+    stop_vm "stop_virtual_machine"
+    reboot_vm "reboot_virtual_machine"
   end
 
   factory :conn do

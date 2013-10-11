@@ -19,6 +19,9 @@ describe VirtualMachine do
     cloudstack = Fog::Compute.new(mock_creds)
     Fog::Compute.stub(:new).and_return(cloudstack)
     cloudstack.stub(:list_virtual_machines).and_return({})
+    cloudstack.stub(:start_virtual_machine).and_return("start")
+    cloudstack.stub(:stop_virtual_machine).and_return("stop")
+    cloudstack.stub(:reboot_virtual_machine).and_return("reboot")
   end
 
   describe "self.find_by_conn" do
@@ -36,6 +39,36 @@ describe VirtualMachine do
 
     it "returns Hash from Fog" do
       expect(@ret[:vms]).to eq({})
+    end
+  end
+
+  describe "self.start_vm" do
+    before do
+      @ret = VirtualMachine.start_vm(@conn, 1)
+    end
+
+    it "returns start" do
+      expect(@ret).to eq("start")
+    end
+  end
+
+  describe "self.stop_vm" do
+    before do
+      @ret = VirtualMachine.stop_vm(@conn, 1)
+    end
+
+    it "returns stop" do
+      expect(@ret).to eq("stop")
+    end
+  end
+
+  describe "self.reboot_vm" do
+    before do
+      @ret = VirtualMachine.reboot_vm(@conn, 1)
+    end
+
+    it "returns reboot" do
+      expect(@ret).to eq("reboot")
     end
   end
 end
