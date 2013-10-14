@@ -22,6 +22,7 @@ FactoryGirl.define do
     start_vm "start_virtual_machine"
     stop_vm "stop_virtual_machine"
     reboot_vm "reboot_virtual_machine"
+    list_vm "list_virtual_machines"
   end
 
   factory :conn do
