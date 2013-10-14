@@ -4,7 +4,7 @@ describe Provider do
   context 'attr_accessible' do
     before do
       @obj = Provider.new
-      @accessible = [:name, :create_vm, :start_vm, :stop_vm, :reboot_vm]
+      @accessible = [:name, :create_vm, :start_vm, :stop_vm, :reboot_vm, :list_vm]
     end
 
     it 'check all columns accessible' do
@@ -24,4 +24,5 @@ describe Provider do
   it { should respond_to(:start_vm) }
   it { should respond_to(:stop_vm) }
   it { should respond_to(:reboot_vm) }
+  it { should respond_to(:list_vm) }
 end

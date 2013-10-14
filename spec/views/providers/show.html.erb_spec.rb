@@ -15,5 +15,6 @@ describe "providers/show" do
     rendered.should match(/Start vm/)
     rendered.should match(/Stop vm/)
     rendered.should match(/Reboot vm/)
+    rendered.should match(/List vm/)
   end
 end

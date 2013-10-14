@@ -10,7 +10,7 @@ class VirtualMachine < ActiveRecord::Base
     compute = make_compute
 
     virtual_machines[:conn] = @conn
-    virtual_machines[:vms] = compute.list_virtual_machines
+    virtual_machines[:vms] = compute.send(conn.provider.list_vm.to_sym)
     virtual_machines
   end
 
