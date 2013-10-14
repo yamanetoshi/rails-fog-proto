@@ -1,5 +1,8 @@
 Shurijp::Application.routes.draw do
 
+  resources :resavations
+
+
   get "user_property/index"
 
   resources :providers
