@@ -25,6 +25,11 @@
   <%= @provider.reboot_vm %>
 </p>
 
+<p>
+  <b>List vm:</b>
+  <%= @provider.list_vm %>
+</p>
+
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
 <%= link_to 'Back', providers_path %>
