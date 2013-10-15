@@ -14,6 +14,7 @@ module ControllerMacros
     controller.stub(:authenticate_user!).and_return true
     @request.env["devise.mapping"] = Devise.mappings[:user]
     conn = FactoryGirl.create(:conn)
+    session[:conn] = conn
     user = User.find(conn.user_id)
     user.confirm!
     sign_in user
