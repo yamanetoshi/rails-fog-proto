@@ -6,6 +6,7 @@ class VmOperationsController < ApplicationController
 
   def index
     session[:idx] = params[:idx]
+    session[:conn] = current_user.conns[params[:idx].to_i]
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
 
     respond_to do |format|
@@ -24,8 +25,8 @@ class VmOperationsController < ApplicationController
   def create
     logger.debug params[:hostname]
     logger.debug current_user.conns[session[:idx].to_i]
-    VirtualMachine.create_vm(current_user.conns[session[:idx].to_i], params[:hostname])
-    @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
+    VirtualMachine.create_vm(session[:conn], params[:hostname])
+    @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
       format.html { redirect_to :action => 'index', :idx => session[:idx] }
       format.json { render json: @virtual_machines }
@@ -33,8 +34,8 @@ class VmOperationsController < ApplicationController
   end
 
   def start
-    VirtualMachine.start_vm(current_user.conns[session[:idx].to_i], params[:id])
-    @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
+    VirtualMachine.start_vm(session[:conn], params[:id])
+    @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
       format.html { redirect_to :action => 'index', :idx => session[:idx] }
       format.json { render json: @virtual_machines }
@@ -42,8 +43,8 @@ class VmOperationsController < ApplicationController
   end
 
   def stop
-    VirtualMachine.stop_vm(current_user.conns[session[:idx].to_i], params[:id])
-    @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
+    VirtualMachine.stop_vm(session[:conn], params[:id])
+    @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
       format.html { redirect_to :action => 'index', :idx => session[:idx] }
       format.json { render json: @virtual_machines }
@@ -51,8 +52,8 @@ class VmOperationsController < ApplicationController
   end
 
   def reboot
-    VirtualMachine.reboot_vm(current_user.conns[session[:idx].to_i], params[:id])
-    @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
+    VirtualMachine.reboot_vm(session[:conn], params[:id])
+    @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
       format.html { redirect_to :action => 'index', :idx => session[:idx] }
       format.json { render json: @virtual_machines }
