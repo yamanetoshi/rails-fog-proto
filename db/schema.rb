@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014041522) do
+ActiveRecord::Schema.define(:version => 20131015123238) do
 
   create_table "conns", :force => true do |t|
     t.string   "access_key"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20131014041522) do
     t.string   "stop_vm"
     t.string   "reboot_vm"
     t.string   "list_vm"
+  end
+
+  create_table "resavations", :force => true do |t|
+    t.string   "operation"
+    t.string   "hour"
+    t.string   "min"
+    t.integer  "vmid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "conn_id"
   end
 
   create_table "users", :force => true do |t|
