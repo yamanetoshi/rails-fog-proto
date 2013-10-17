@@ -1,3 +1,4 @@
 class Resavation < ActiveRecord::Base
-  attr_accessible :conn_id, :hour, :min, :operation, :vmid
+  belongs_to :conn
+  attr_accessible :hour, :min, :operation, :vmid, :conn_id
 end

@@ -1,7 +1,20 @@
 Shurijp::Application.routes.draw do
 
-  resources :resavations
+#  get "vmresavation/index"
+#  get "vmresavation/new"
+#  get "vmresavation/create"
+#  get "vmresavation/edit"
+#  get "vmresavation/update"
+#  get "vmresavation/destroy"
 
+  resources :vmresavation, only: [:new, :create, :edit, :update, :destroy]
+  match 'vmresavation/:id', :to => 'vmresavation#index', :as => 'vmresavation', :via => :get
+
+  resources :resavations, only: [:index, :show]
+#  resources :resavations, :expect => [:index]
+#  resources :resavations, :path => 'vm/resavations', only: [:create, :new, :edit, :show, :update, :destroy]
+#  resources :resavations, only: [:create, :new, :edit, :show, :update, :destroy]
+#  match 'resavations/vm/:id/', :to => 'resavations#index', :as => 'resavations', :via => :get
 
   get "user_property/index"
 

@@ -1,10 +1,21 @@
 require 'spec_helper'
 
 describe "Resavations" do
+  before do
+    create_logged_in_user
+  end
+
   describe "GET /resavations" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get resavations_path
+    it "returns HTTP status 200" do
+      get "/resavations"
+      response.status.should be(200)
+    end
+  end
+
+  describe "GET /resavations/1" do
+    it "returns HTTP status 200" do
+      @resavation = FactoryGirl.create(:resavation)
+      get "resavations/1"
       response.status.should be(200)
     end
   end

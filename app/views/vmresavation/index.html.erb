@@ -5,8 +5,12 @@
     <th>Operation</th>
     <th>Hour</th>
     <th>Min</th>
+<!--
     <th>Vmid</th>
     <th>Conn</th>
+    <th></th>
+-->
+    <th></th>
     <th></th>
   </tr>
 
@@ -15,9 +19,21 @@
     <td><%= resavation.operation %></td>
     <td><%= resavation.hour %></td>
     <td><%= resavation.min %></td>
+<!--
     <td><%= resavation.vmid %></td>
     <td><%= resavation.conn_id %></td>
+-->
+<!--
     <td><%= link_to 'Show', resavation %></td>
+    <td><%= link_to 'Edit', edit_vmresavation_path(resavation) %></td>
+-->
+    <td><%= link_to 'Edit', edit_vmresavation_path(resavation) %></td>
+    <td><%= link_to 'Destroy', resavation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
+
+<br />
+
+<%= link_to 'New Resavation', new_vmresavation_path %>
+<%= link_to 'Back', {controller: "vm_operations", action: "index", idx: session[:idx] } %>

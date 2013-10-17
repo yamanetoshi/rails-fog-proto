@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :resavation do
     operation "MyString"
-    hour "MyString"
-    min "MyString"
+    hour "12"
+    min "00"
     vmid 1
     conn_id 1
   end

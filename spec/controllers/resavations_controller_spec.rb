@@ -35,130 +35,63 @@ describe ResavationsController do
   end
 
   describe "GET index" do
-    it "assigns all resavations as @resavations" do
-      resavation = Resavation.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:resavations).should eq([resavation])
+    context "When user is not signed in" do
+      it "should redirect to signin screen" do
+        get :index
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "When user is signed in" do
+      before do
+        login_user
+      end
+
+      it "responds successfully with on HTTP 200 status code" do
+        get :index
+        expect(response).to be_success
+        expect(response.code).to eq("200")
+      end
+
+      it "renders the index template" do
+        get :index
+        expect(response).to render_template("index")
+      end
+
+      after do
+        sign_out :user
+      end
     end
   end
 
   describe "GET show" do
-    it "assigns the requested resavation as @resavation" do
-      resavation = Resavation.create! valid_attributes
-      get :show, {:id => resavation.to_param}, valid_session
-      assigns(:resavation).should eq(resavation)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new resavation as @resavation" do
-      get :new, {}, valid_session
-      assigns(:resavation).should be_a_new(Resavation)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested resavation as @resavation" do
-      resavation = Resavation.create! valid_attributes
-      get :edit, {:id => resavation.to_param}, valid_session
-      assigns(:resavation).should eq(resavation)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Resavation" do
-        expect {
-          post :create, {:resavation => valid_attributes}, valid_session
-        }.to change(Resavation, :count).by(1)
-      end
-
-      it "assigns a newly created resavation as @resavation" do
-        post :create, {:resavation => valid_attributes}, valid_session
-        assigns(:resavation).should be_a(Resavation)
-        assigns(:resavation).should be_persisted
-      end
-
-      it "redirects to the created resavation" do
-        post :create, {:resavation => valid_attributes}, valid_session
-        response.should redirect_to(Resavation.last)
+    context "When user is not signed in" do
+      it "should redirect to signin screen" do
+        get :show, {:id => 1}
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved resavation as @resavation" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Resavation.any_instance.stub(:save).and_return(false)
-        post :create, {:resavation => {}}, valid_session
-        assigns(:resavation).should be_a_new(Resavation)
+    context "When user is signed in" do
+      before do
+        login_user
+        @resavation = FactoryGirl.create(:resavation)
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Resavation.any_instance.stub(:save).and_return(false)
-        post :create, {:resavation => {}}, valid_session
-        response.should render_template("new")
+      it "responds successfully with on HTTP 200 status code" do
+        get :show, {:id => 1 }
+        expect(response).to be_success
+        expect(response.code).to eq("200")
+      end
+
+      it "renders the index template" do
+        get :show, {:id => 1}
+        expect(response).to render_template("show")
+      end
+
+      after do
+        sign_out :user
       end
     end
   end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested resavation" do
-        resavation = Resavation.create! valid_attributes
-        # Assuming there are no other resavations in the database, this
-        # specifies that the Resavation created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Resavation.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => resavation.to_param, :resavation => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested resavation as @resavation" do
-        resavation = Resavation.create! valid_attributes
-        put :update, {:id => resavation.to_param, :resavation => valid_attributes}, valid_session
-        assigns(:resavation).should eq(resavation)
-      end
-
-      it "redirects to the resavation" do
-        resavation = Resavation.create! valid_attributes
-        put :update, {:id => resavation.to_param, :resavation => valid_attributes}, valid_session
-        response.should redirect_to(resavation)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the resavation as @resavation" do
-        resavation = Resavation.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Resavation.any_instance.stub(:save).and_return(false)
-        put :update, {:id => resavation.to_param, :resavation => {}}, valid_session
-        assigns(:resavation).should eq(resavation)
-      end
-
-      it "re-renders the 'edit' template" do
-        resavation = Resavation.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Resavation.any_instance.stub(:save).and_return(false)
-        put :update, {:id => resavation.to_param, :resavation => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested resavation" do
-      resavation = Resavation.create! valid_attributes
-      expect {
-        delete :destroy, {:id => resavation.to_param}, valid_session
-      }.to change(Resavation, :count).by(-1)
-    end
-
-    it "redirects to the resavations list" do
-      resavation = Resavation.create! valid_attributes
-      delete :destroy, {:id => resavation.to_param}, valid_session
-      response.should redirect_to(resavations_url)
-    end
-  end
-
 end
