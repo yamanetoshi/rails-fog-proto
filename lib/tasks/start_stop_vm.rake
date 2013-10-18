@@ -3,11 +3,13 @@ namespace :start_stop_vm do
 
   task :execute => :environment do 
     now = Time.now
-    Resavation.find_all_by_hour_and_min(now.hour, now.min).each do |r|
-      if r.operation == "Start"
-        VirtualMachine.start_vm(Conn.find(r.conn_id), r.vmid)
-      elsif r.operation == "Stop"
-        VirtualMachine.stop_vm(Conn.find(r.conn_id), r.vmid)
+    Resavation.find_all_by_hour(now.hour).each do |r|
+      if r.min[0] == now.min.to_s[0]
+        if r.operation == "Start"
+          VirtualMachine.start_vm(Conn.find(r.conn_id), r.vmid)
+        elsif r.operation == "Stop"
+          VirtualMachine.stop_vm(Conn.find(r.conn_id), r.vmid)
+	end
       end
     end
   end
