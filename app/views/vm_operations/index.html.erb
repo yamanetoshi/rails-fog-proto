@@ -18,6 +18,7 @@
           <ul class="dropdown-menu">
              <li><%= link_to "Stop VM", controller:"vm_operations", action:"stop", id: vm["id"] %></li>
              <li><%= link_to "Reboot VM", controller:"vm_operations", action:"reboot", id: vm["id"] %></li>
+             <li><%= link_to "Schedule", controller:"vmresavation", action:"index", id: vm["id"] %></li>
           </ul>
         </td>
       <% elsif vm["state"] == "Stopped" then %>
@@ -25,6 +26,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operation<b class="caret"></b></a>
           <ul class="dropdown-menu">
              <li><%= link_to "Start VM", controller:"vm_operations", action:"start", id: vm["id"] %></li>
+             <li><%= link_to "Schedule", controller:"vmresavation", action:"index", id: vm["id"] %></li>
           </ul>
         </td>
       

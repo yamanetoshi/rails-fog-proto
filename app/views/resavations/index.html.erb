@@ -1,0 +1,23 @@
+<h1>Listing resavations</h1>
+
+<table>
+  <tr>
+    <th>Operation</th>
+    <th>Hour</th>
+    <th>Min</th>
+    <th>Vmid</th>
+    <th>Conn</th>
+    <th></th>
+  </tr>
+
+<% @resavations.each do |resavation| %>
+  <tr>
+    <td><%= resavation.operation %></td>
+    <td><%= resavation.hour %></td>
+    <td><%= resavation.min %></td>
+    <td><%= resavation.vmid %></td>
+    <td><%= resavation.conn_id %></td>
+    <td><%= link_to 'Show', resavation %></td>
+  </tr>
+<% end %>
+</table>
