@@ -3,6 +3,7 @@ require 'json'
 
 class VmOperationsController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :only => [:create]
 
   def index
     session[:idx] = params[:idx]
@@ -23,8 +24,6 @@ class VmOperationsController < ApplicationController
   end
 
   def create
-    logger.debug params[:hostname]
-    logger.debug current_user.conns[session[:idx].to_i]
     VirtualMachine.create_vm(session[:conn], params[:hostname])
     @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
