@@ -18,7 +18,7 @@ class VmOperationsController < ApplicationController
   end
 
   def new
-    form_authenticity_token
+#    form_authenticity_token
     puts "*** debug ***"
     puts session[:_csrf_token]
     authenticity = { :key => session[:_csrf_token] }
