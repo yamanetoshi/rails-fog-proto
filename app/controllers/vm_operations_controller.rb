@@ -18,7 +18,11 @@ class VmOperationsController < ApplicationController
   end
 
   def new
+    puts "*** debug ***"
+    puts session[:_csrf_token]
     authenticity = { :key => session[:_csrf_token] }
+    puts authenticity
+    puts "*** debug ***"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: authenticity }
