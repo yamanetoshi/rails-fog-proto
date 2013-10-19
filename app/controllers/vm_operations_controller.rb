@@ -18,7 +18,7 @@ class VmOperationsController < ApplicationController
   end
 
   def new
-    autnenticity = { :key => session[:_csrf_key] }
+    authenticity = { :key => session[:_csrf_key] }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: authenticity }
