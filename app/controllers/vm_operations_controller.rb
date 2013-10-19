@@ -9,12 +9,6 @@ class VmOperationsController < ApplicationController
   def index
     session[:idx] = params[:idx]
     session[:conn] = current_user.conns[params[:idx].to_i]
-
-    puts "*** debug ***"
-    puts "**** csrf_token ***"
-    puts session[:_csrf_token]
-    puts "*** debug ***"
-
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
 
     respond_to do |format|
@@ -24,9 +18,10 @@ class VmOperationsController < ApplicationController
   end
 
   def new
+    autnenticity = { :key => session[:_csrf_key] }
     respond_to do |format|
       format.html # new.html.erb
-#      format.json { render json: @conns }
+      format.json { render json: authenticity }
     end
   end
 
