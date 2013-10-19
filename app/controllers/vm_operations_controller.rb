@@ -10,10 +10,10 @@ class VmOperationsController < ApplicationController
     session[:idx] = params[:idx]
     session[:conn] = current_user.conns[params[:idx].to_i]
 
-    logger.debug "*** debug ***"
-    logger.debug "**** csrf_token ***"
-    logger.debug session[:_csrf_token]
-    logger.debug "*** debug ***"
+    puts "*** debug ***"
+    puts "**** csrf_token ***"
+    puts session[:_csrf_token]
+    puts "*** debug ***"
 
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
 
