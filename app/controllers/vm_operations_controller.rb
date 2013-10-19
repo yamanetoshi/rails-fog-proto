@@ -12,7 +12,7 @@ class VmOperationsController < ApplicationController
 
     logger.debug "*** debug ***"
     logger.debug "**** csrf_token ***"
-    logger.debig session[:_csrf_token]
+    logger.debug session[:_csrf_token]
     logger.debug "*** debug ***"
 
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
