@@ -42,6 +42,8 @@ class VmOperationsController < ApplicationController
 
   def create
     puts "*** create ***"
+    puts params[:authenticity_token]
+    puts session[:_csrf_token]
     puts "*** create ***"
     VirtualMachine.create_vm(session[:conn], params[:hostname])
     @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
