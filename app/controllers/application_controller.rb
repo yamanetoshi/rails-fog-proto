@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
+#  skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
   protect_from_forgery # :secret => 'my-little-pony'
 
   def admin_login
