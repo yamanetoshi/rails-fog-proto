@@ -32,6 +32,7 @@ class VmOperationsController < ApplicationController
 #    authenticity = { :key => session[:_csrf_token] }
     authenticity = { :key => form_authenticity_token }
     puts authenticity
+    puts session[:_csrf_token]
     puts "*** debug ***"
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +41,8 @@ class VmOperationsController < ApplicationController
   end
 
   def create
+    puts "*** create ***"
+    puts "*** create ***"
     VirtualMachine.create_vm(session[:conn], params[:hostname])
     @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
