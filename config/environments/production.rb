@@ -67,5 +67,5 @@ Shurijp::Application.configure do
 
   config.assets.compile = true
 
-  config.action_mailer.default_url_options = { :host => 'guarded-basin-4478.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'cryptic-eyrie-8923.herokuapp.com' }
 end
