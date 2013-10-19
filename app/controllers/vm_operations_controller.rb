@@ -11,9 +11,11 @@ class VmOperationsController < ApplicationController
     session[:idx] = params[:idx]
     session[:conn] = current_user.conns[params[:idx].to_i]
 
-    puts "session[:idx] " session[:idx]
-    puts "session[:conn] " session[:conn]
-    puts "current_user " current_user
+    puts "*** debug ***"
+    puts session[:idx]
+    puts session[:conn]
+    puts current_user
+    puts "*** debug ***"
 
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
 
