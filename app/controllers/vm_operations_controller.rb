@@ -3,6 +3,8 @@ require 'json'
 
 class VmOperationsController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| 
+    c.request.format == 'application/json' }
 #  protect_from_forgery :except => ["create"]
 
   def index
@@ -20,8 +22,8 @@ class VmOperationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-#      format.json { render json: @virtual_machines }
-      format.json { render json: ret }
+      format.json { render json: @virtual_machines }
+#      format.json { render json: ret }
     end
   end
 
