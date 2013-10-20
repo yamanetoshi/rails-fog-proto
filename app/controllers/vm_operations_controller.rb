@@ -3,10 +3,7 @@ require 'json'
 
 class VmOperationsController < ApplicationController
   before_filter :authenticate_user!
-#  skip_before_filter :verify_authenticity_token, :only => [:create]
-  protect_from_forgery :except => [:create]
-#  protect_from_forgery :only => ["index", "new", "start", "stop", "reboot"]
-#  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
+  protect_from_forgery :except => ["create"]
 
   def index
     session[:idx] = params[:idx]
@@ -27,25 +24,16 @@ class VmOperationsController < ApplicationController
   end
 
   def new
-#    form_authenticity_token
-    puts "*** debug ***"
-    puts session[:_csrf_token]
-#    authenticity = { :key => session[:_csrf_token] }
-    authenticity = { :key => form_authenticity_token }
-    puts authenticity
-    puts session[:_csrf_token]
-    puts "*** debug ***"
+    new = {:authenticity => form_authenticity_token, :connid => session[:conn].id.to_s, :idx = session[:idx] }
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: authenticity }
+      format.json { render json: new }
     end
   end
 
   def create
-    puts "*** create ***"
-    puts params[:authenticity_token]
-    puts session[:_csrf_token]
-    puts "*** create ***"
+    session[:idx] = params[:idx]
+    session[:conn] = Conn.find(params[:connid])
     VirtualMachine.create_vm(session[:conn], params[:hostname])
     @virtual_machines = VirtualMachine.find_by_conn(session[:conn])
     respond_to do |format|
