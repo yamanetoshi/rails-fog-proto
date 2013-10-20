@@ -16,10 +16,12 @@ class VmOperationsController < ApplicationController
     puts "*** debug ***"
 
     @virtual_machines = VirtualMachine.find_by_conn(current_user.conns[params[:idx].to_i])
+    ret = {:virtual_machines => @virtual_machines, :authenticity => form_authenticity_token }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @virtual_machines }
+#      format.json { render json: @virtual_machines }
+      format.json { render json: ret }
     end
   end
 
