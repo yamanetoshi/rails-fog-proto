@@ -24,6 +24,12 @@ class VmOperationsController < ApplicationController
   end
 
   def new
+    puts "*** debug ***"
+    puts session[:idx]
+    puts session[:conn]
+    puts current_user
+    puts "*** debug ***"
+
     new = {:authenticity => form_authenticity_token, :connid => session[:conn].id.to_s, :idx => session[:idx] }
     respond_to do |format|
       format.html # new.html.erb
