@@ -34,10 +34,10 @@ class VmOperationsController < ApplicationController
     puts current_user
     puts "*** debug ***"
 
-    new = {:authenticity => form_authenticity_token, :connid => session[:conn].id.to_s, :idx => session[:idx] }
+#    new = {:authenticity => form_authenticity_token, :connid => session[:conn].id.to_s, :idx => session[:idx] }
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: new }
+#      format.json { render json: new }
     end
   end
 
