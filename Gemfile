@@ -35,7 +35,7 @@ gem 'jquery-rails', '2.0.2'
 
 group :production do
   gem 'pg', '0.12.2'
-  gem 'mysql2'
+  gem 'mysql2', '0.3.13'
 end
 
 group :test do
