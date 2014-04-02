@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+RSpec.configure do |config|
+  config.include ControllerMacros, :type => :request
+end
+
 describe "VmOperations" do
   before do
     create_logged_in_user
@@ -13,19 +17,19 @@ describe "VmOperations" do
     end
   end
 
-  describe "GET /vm_operations/new" do
-    it "returns HTTP status 200" do
-      fog_mock_init_request
-      get "/vm_operations/new"
-      response.status.should be(200)
-    end
-  end
+#  describe "GET /vm_operations/new" do
+#    it "returns HTTP status 200" do
+#      fog_mock_init_request
+#      get "/vm_operations/new"
+#      response.status.should be(200)
+#    end
+#  end
 
   describe "POST /vm_operations" do
     it "returns HTTP status 302" do
       fog_mock_init_request
       get "/vm_operations/0"
-      post "/vm_operations"
+      post "/vm_operations", :idx => session[:idx], :connid => session[:conn].id, :hostname => "xxx"
       response.status.should be(302)
     end
   end

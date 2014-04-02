@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+#RSpec.configure do |config|
+#  config.extend ControllerMacros, :type => :controller
+#end
+
 describe VmOperationsController do
 
   describe "GET 'index'" do
@@ -81,7 +85,12 @@ describe VmOperationsController do
       it "returns http success" do
         fog_mock_init
 
-        post 'create'
+#        require "ruby-debug"
+#        debugger
+
+#        post 'create'
+        post :create, :idx => session[:idx], :connid => session[:conn].id, :hostname => "xxx"
+
         expect(response).to redirect_to(:action => 'index', :idx => '0')
       end
 
