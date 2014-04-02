@@ -1,8 +1,8 @@
 include Warden::Test::Helpers
 
-RSpec.configure do |config|
-  config.include ControllerMacros, :type => :request
-end
+#RSpec.configure do |config|
+#  config.include ControllerMacros, :type => :request
+#end
 
 module RequestHelpers
   def create_logged_in_user
